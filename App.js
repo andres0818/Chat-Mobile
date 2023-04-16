@@ -1,24 +1,29 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { app, uno } from "./src/firebase/db.js";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { View } from "react-native";
+import Chat from "./src/firebase/screens/Chat";
+
+
+const Stack = createStackNavigator();
+
+const ChatStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Chat" component={Chat} />
+    </Stack.Navigator>
+  );
+};
+
+const RootNavigator = () => {
+  return (
+    <NavigationContainer>
+      <ChatStack />
+    </NavigationContainer>
+  );
+};
 
 export default function App() {
-
-  console.log(app)
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <RootNavigator/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
